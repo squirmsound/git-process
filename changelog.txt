@@ -1,0 +1,7 @@
+commit cd71bd1 (HEAD -> master, origin/master)
+Author:     AGUIA156 <adrian.a.aguirre@disney.com>
+AuthorDate: Mon Jun 18 15:05:16 2018 -0700
+Commit:     AGUIA156 <adrian.a.aguirre@disney.com>
+CommitDate: Mon Jun 18 15:05:16 2018 -0700
+
+    Add git documentation

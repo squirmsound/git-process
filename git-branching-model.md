@@ -34,58 +34,98 @@ We have to be very strict with this, so that theoretically, our pipeline scripts
 
 
 ## Supporting branches
-Next to the main branches master and develop, our development model uses a variety of supporting branches to aid parallel development between team members, ease tracking of features, prepare for production releases and to assist in quickly fixing live production problems. Unlike the main branches, these branches always have a limited life time, since they will be removed eventually.
+Analogous to the main branches `master` and `develop`, our development should use a variety of supporting branches to act as support for the following business use cases.
 
-The different types of branches we may use are:
+- Parallel development between team members
+- Ease tracking of features
+- Prepare for production releases and to assist in quickly fixing live production problems.
+- Unlike the main branches, these branches always have a limited life time, since they will be removed eventually.
 
-- Feature branches
-- Release branches
-- Hotfix branches
+The different types of branches we use are:
 
-Each of these branches have a specific purpose and are bound to strict rules as to which branches may be their originating branch and which branches must be their merge targets. We will walk through them in a minute.
+- `Feature`
+- `Release`
+- `Hotfix`
 
-By no means are these branches “special” from a technical perspective. The branch types are categorized by how we use them. They are of course plain old Git branches.
+Each of these branches have a specific purpose that are bound to strict rules. These rules establish which branches may be their *origin* branch and which branches must be their *merge targets*.
+
+The branch types are categorized by how we use them and are not “special” from a technical perspective.
+
 
 ## Feature branches
+
+| Feature Branch         | May branch off from   | Must merge back into  |
+| ---------------------: |:--------------------- | --------------------- |
+| 155803215-feature      | develop               | develop               |
+
+`155803215-feature` is an example of a branch name
+
+
 May branch off from:
+
 `develop`
+
 Must merge back into:
+
 `develop`
-Branch naming convention:
-`anything except master, develop, release-*, or hotfix-*`
 
-Feature branches (or sometimes called topic branches) are used to develop new features for the upcoming or a distant future release. When starting development of a feature, the target release in which this feature will be incorporated may well be unknown at that point. The essence of a feature branch is that it exists as long as the feature is in development, but will eventually be merged back into develop (to definitely add the new feature to the upcoming release) or discarded (in case of a disappointing experiment).
+Branch naming convention rules are anything except the following
+- master
+- develop
+- release-*
+- hotfix-*
 
+
+#### The purpose of a feature branch
+Feature branches are used to develop new features for the upcoming or a distant future release.
+When starting development of a feature, the target release for the feature may be unknown at its creation time.
+The purpose of a feature branch is that it exists as long as the feature is in development, but will eventually be merged back into develop to add the new feature to the upcoming release.
+The feature branch could also be discarded in case of the failure of an experiment.
 Feature branches typically exist in developer repos only, not in origin.
+Since this is not practiced today, this is a part of the paradigm that team will need to adjust to.
 
-fb@2x.png
+![Feature Branches](https://i.imgur.com/UPcJcp9.png)
 
 #### Creating a feature branch
 When starting work on a new feature, branch off from the develop branch.
 ```
-$ git checkout -b myfeature develop
-Switched to a new branch "myfeature"
+$ git checkout -b <feature-branch-convention> develop
+Switched to a new branch <feature-branch-convention>
 ```
+
+#### Feature Branch Convention
+`<STORYID-TYPE-SHORT_STATEMENT>`
+
 #### Incorporating a finished feature on develop
-Finished features may be merged into the develop branch to definitely add them to the upcoming release:
+Finished features are to be merged into the `develop` branch so that they are added to the upcoming release:
 
 ```
 $ git checkout develop
-Switched to branch 'develop'
+
+```
+`...Switched to branch 'develop'`
+```
 $ git merge --no-ff myfeature
-Updating ea1b82a..05e9557
-(Summary of changes)
+```
+
+`...Updating ea1b82a..05e9557, `
+`(Summary of changes)`
+
+```
 $ git branch -d myfeature
-Deleted branch myfeature (was 05e9557).
+```
+`...Deleted branch myfeature (was 05e9557)`
+```
 $ git push origin develop
 ```
-The --no-ff flag causes the merge to always create a new commit object, even if the merge could be performed with a fast-forward. This avoids losing information about the historical existence of a feature branch and groups together all commits that together added the feature. Compare:
+The `--no-ff` flag causes the merge to always create a new commit object, even if the merge could be performed with a fast-forward. This avoids losing information about the historical existence of a feature branch and groups together all commits that together added the feature. Compare:
 
 merge-without-ff@2x.png
 
 In the latter case, it is impossible to see from the Git history which of the commit objects together have implemented a feature—you would have to manually read all the log messages. Reverting a whole feature (i.e. a group of commits), is a true headache in the latter situation, whereas it is easily done if the --no-ff flag was used.
 
 Yes, it will create a few more (empty) commit objects, but the gain is much bigger than the cost.
+
 
 ## Release branches
 May branch off from:
