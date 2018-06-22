@@ -77,7 +77,7 @@ The feature branch could also be discarded in case of the failure of an experime
 Feature branches typically exist in developer repos only, not in origin.
 Since this is not practiced today, this is a part of the paradigm that team will need to adjust to.
 
-![Feature Branches](https://i.imgur.com/UPcJcp9.png)
+![Imgur](https://i.imgur.com/jJNTxIv.png)
 
 #### Creating a feature branch
 
