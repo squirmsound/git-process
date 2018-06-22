@@ -243,23 +243,30 @@ hotfix-branches@2x
 Hotfix branches are created from the master branch. For example, say version 1.2 is the current production release running live and causing troubles due to a severe bug. But changes on develop are yet unstable. We may then branch off a hotfix branch and start fixing the problem:
 
 ```
-$ git checkout -b hotfix-1.2.1 master
-Switched to a new branch "hotfix-1.2.1"
-$ ./bump-version.sh 1.2.1
-Files modified successfully, version bumped to 1.2.1.
-$ git commit -a -m "Bumped version number to 1.2.1"
-[hotfix-1.2.1 41e61bb] Bumped version number to 1.2.1
-1 files changed, 1 insertions(+), 1 deletions(-)
+git checkout -b hotfix-1.2.1 master
 ```
+`Switched to a new branch "hotfix-1.2.1"`
+```
+./bump-version.sh 1.2.1
+```
+`Files modified successfully, version bumped to 1.2.1.`
+```
+git commit -a -m "Bumped version number to 1.2.1"
+```
+`[hotfix-1.2.1 41e61bb] Bumped version number to 1.2.1`
+`1 files changed, 1 insertions(+), 1 deletions(-)`
 
 Don’t forget to bump the version number after branching off!
 Then, fix the bug and commit the fix in one or more separate commits.
 
 ```
-$ git commit -m "Fixed severe production problem"
-[hotfix-1.2.1 abbe5d6] Fixed severe production problem
-5 files changed, 32 insertions(+), 17 deletions(-)
+git commit -m "Fixed severe production problem"
 ```
+
+`[hotfix-1.2.1 abbe5d6] Fixed severe production problem`
+
+`5 files changed, 32 insertions(+), 17 deletions(-)`
+
 
 #### Finishing a hotfix branch
 
@@ -268,12 +275,20 @@ When finished, the bugfix needs to be merged back into master, but also needs to
 First, update master and tag the release.
 
 ```
-$ git checkout master
-Switched to branch 'master'
-$ git merge --no-ff hotfix-1.2.1
-Merge made by recursive.
-(Summary of changes)
-$ git tag -a 1.2.1
+git checkout master
+```
+
+`Switched to branch 'master'`
+```
+git merge --no-ff hotfix-1.2.1
+```
+
+`Merge made by recursive.`
+
+`(Summary of changes)`
+
+```
+git tag -a 1.2.1
 ```
 
 `You might as well want to use the -s or -u <key> flags to sign your tag cryptographically.`
@@ -289,6 +304,7 @@ git checkout develop
 ```
 git merge --no-ff hotfix-1.2.1
 ```
+
 `Merge made by recursive. (Summary of changes)`
 
 The one exception to the rule here is that, `when a release branch currently exists, the hotfix changes need to be merged into that release branch, instead` of `develop`. Back-merging the bugfix into the release branch will eventually result in the bugfix being merged into develop too, when the release branch is finished. (If work in develop immediately requires this bugfix and cannot wait for the release branch to be finished, you may safely merge the bugfix into develop now already as well.)
@@ -297,8 +313,9 @@ Finally, remove the temporary branch:
 
 ```
 $ git branch -d hotfix-1.2.1
-Deleted branch hotfix-1.2.1 (was abbe5d6).
 ```
+
+`Deleted branch hotfix-1.2.1 (was abbe5d6).`
 
 ## Summary
 
