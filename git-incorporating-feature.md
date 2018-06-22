@@ -29,7 +29,7 @@ The `--no-ff` flag causes the merge to always create a new commit object, even i
 ![Imgur](https://i.imgur.com/hlECGQ4.png)
 
 
-![Imgur](https://i.imgur.com/T2ITlB0.png)
+![Imgur](https://i.imgur.com/JysvYsm.png)
 
 
 In the latter case, it is impossible to see from the Git history which of the commit objects together have implemented a feature—you would have to manually read all the log messages. Reverting a whole feature (i.e. a group of commits), is a true headache in the latter situation, whereas it is easily done if the --no-ff flag was used.
