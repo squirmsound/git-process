@@ -1,19 +1,17 @@
 ![Imgur](https://i.imgur.com/kkQ74i4.png)
 
 ## The Main Branches
-
 At the core, the development model is greatly inspired by existing models out there. The central repo holds two main branches with an infinite lifetime:
 
-* `master` at origin(should be familiar to every Git user)
-* `develop` is parallel to the master branch.
+- `master` at origin(should be familiar to every Git user)
+- `develop` is parallel to the master branch.
 
-We consider `origin/master` to be the main branch where the source code of _HEAD_ always reflects a "production-ready" state.
 
-```
-main-branches@2x.png
-```
+We consider  `origin/master` to be the main branch where the source code of *HEAD* always reflects a "production-ready" state.
 
-We consider `origin/develop` to be the main branch where the source code of _HEAD_ always reflects a state with the latest delivered development changes for the next release.
+![Main Branches](https://i.imgur.com/Z6K1uRw.png)
+
+We consider `origin/develop` to be the main branch where the source code of *HEAD* always reflects a state with the latest delivered development changes for the next release.
 
 Some would call this the “integration branch”. This is where any automatic nightly builds are built from.
 
@@ -25,7 +23,8 @@ Therefore, each time when changes are merged back into master, this is a new pro
 
 Some would call this the `release candidate`
 
-We have to be very strict with this, so that theoretically, our pipeline scripts will automatically build and roll-out our software to our production servers everytime there was a commit on master.
+We have to be very strict with this, so that theoretically, our pipeline scripts will automatically build and roll-out our software to our production servers every time there was a commit on master.
+
 
 ## Supporting branches
 
@@ -236,7 +235,7 @@ Hotfix branches are very much like release branches in that they are also meant 
 
 The essence is that work of team members (on the develop branch) can continue, while another person is preparing a quick production fix.
 
-hotfix-branches@2x
+![Hotfixes](https://i.imgur.com/LCfCKCR.png)
 
 #### Creating the hotfix branch
 

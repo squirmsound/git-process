@@ -7,9 +7,7 @@ At the core, the development model is greatly inspired by existing models out th
 
 We consider  `origin/master` to be the main branch where the source code of *HEAD* always reflects a "production-ready" state.
 
-```
-main-branches@2x.png
-```
+![Main Branches](https://i.imgur.com/Z6K1uRw.png)
 
 We consider `origin/develop` to be the main branch where the source code of *HEAD* always reflects a state with the latest delivered development changes for the next release.
 
